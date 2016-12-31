@@ -1,0 +1,53 @@
+{% extends "layout.html" %}
+{% block body %}
+
+		
+	<form action="" method=post class="form-horizontal">
+    <h2><img src="static/blogbox_logo4.png" height=23 width=23> Complete Registration Process</h2>
+	<p>Thankyou for purchasing a subscription to BlogBox. Please enter the following details to complete your registration.</p>
+	<p>	1. If you don't have your own domain name simply enter your domain as mysite.blogbox.com (only numbers 0-9, letters a-z and hyphens can be used, no http:// is needed)</p>
+	<p>2. If you have your own domain name, enter that instead. You will be able to access your blog at a test URL, to which you will need to point your domain name server to (CNAME record). Developers note this registration process will create an Amazon Web Services S3 bucket named as the domain name you enter here, which must be available for registration to proceed.</p>
+	<p>&nbsp</p>
+	
+    <div class="control-group">
+	
+	<label class="control-label" for="email">Email Address: </label>
+        <div class="controls">
+		
+          <input type="text" id="email" name="email" class="input-xlarge"
+            placeholder="Enter email" value="{{ request.form.email }}"
+            required>
+			
+        </div>
+    </div>
+ 
+    <div class="control-group">
+	<label class="control-label" for="password">Password: </label>
+        <div class="controls">
+		
+          <input type="password" id="password" name="password" class="input-xlarge"
+            placeholder="Enter Password" value="{{ request.form.password }}"
+            required>
+        </div>
+    </div>
+	
+	<div class="control-group">
+	<label class="control-label" for="psiteurl">Your Domain: </label>
+        <div class="controls">
+          <input type="text" id="psiteurl" name="psiteurl" class="input-xlarge"
+            placeholder="Enter URL e.g. example.blogbox.com" value="{{ request.form.psiteurl }}"
+            required>
+        </div>
+    </div>
+<p>
+	</p>
+	
+    <div class="control-group">
+        <div class="controls">
+          <button type="submit" class="btn btn-success">Register</button>
+        </div>
+    </div>
+  </form>
+
+
+{% endblock %}

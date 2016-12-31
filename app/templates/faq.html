@@ -1,0 +1,36 @@
+{% extends "layout.html" %}
+{% block body %}
+<!-- Main Page Content and Sidebar -->
+<div id="main" class="container">
+
+ 	<h2><img src="static/blogbox_logo4.png" height=23 width=23> Frequently Asked Questions</h2>
+	<h5>How do I set up a custom domain name?</h5>
+	If you own a custom domain name, such as example.com, choose example.com as your domain name in BlogBox. On your settings page you will see a longer URL, to which you need to point your DNS (Domain Name Server) CNAME record to.
+	</p>
+	<p><h5>How do I use a BlogBox subdomain?</h5>
+	Simply change your domain to example.blogbox.com. You don't need to do anything else, we will set up the DNS for you.
+	</p>
+	<p><h5>What headings should I use in my blog post?</h5>
+	<code>Date: 2013-03-15 20:20<br>
+	Title: My Blog Post<br>
+	Slug: my-post<br>
+	Category: Ramblings<br>
+	Author: Author Name<br>
+	Summary: Summary of the blog for the index page<br></code>
+	</p>
+	<p><h5>When my blog is published all my text is all one one line? What happened?</h5>
+	To insert a line break / carriage return in Markdown, end each line with TWO spaces and then press enter / carriage return key. If you just end a with a carriage return, when your blog is uploaded it will be ignored and your text will appear on one line. See the <a href="https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet" target="_blank">Markdown cheatsheet</a> for more information on formatting using Markdown. You'll see the same behaviour in the Dillinger preview window!
+	</p>
+	<p><h5>How can I add a picture to my blog from Dropbox?</h5>
+	You can insert any image from your BlogBox blog, but it must be available online somewhere. The easiest way to do this is through Dropbox.<br>
+	1. Copy your image to Dropbox. You can store it in your BlogBox folder if you wish.<br> 2. Next, right click on the image, and in the popup menu, left click "Share Dropbox Link".<br>3. Paste the link to the image into you blog file, enclosed by parentheses, like this:<br>(https://www.dropbox.com/s/1wraz68pydu8hdq/andypi-colorfinal.svg?dl=0)<br>4. At the end of the dropbox link, delete dl=o and replace it with raw=1. Just before the link add an exclamation mark and square brackets (with a name inside if you wish), so it will look something like this:<br>
+	![image_name](https://www.dropbox.com/s/1wraz68pydu8hdq/andypi-colorfinal.svg?raw=1)
+	</p>
+	<p><h5>I'm concerned about privacy. Can Blogbox access all of my Dropbox? What about my data?</h5>
+	When you authorize Blogbox on Dropbox, it creates its own folder in Dropbox/Apps/Blogbox. Blogbox only has access to this folder, it cannot modify or even see any other folder. Your payment data is all handled through PayPal, we don't store any of this ourselves. The Blogbox website is encrypted with SSL (see the green lock in the browser bar) so any information, such as you blog settings are  passed to us securely. We use an industry standard method to save your password indirectly, so it cannot be recovered by hackers.
+	</p>
+    </div>
+	 	     
+
+<!-- End Main Content -->  
+{% endblock %}

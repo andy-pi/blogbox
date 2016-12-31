@@ -1,0 +1,47 @@
+{% extends "layout.html" %}
+{% block body %}
+     
+      <!-- Main Page Content and Sidebar -->
+	 
+<div id="main" class="container">
+
+     {% for puser in puser %}
+	 
+            <!-- Main Blog Content -->
+
+         <article>
+		 <table class="table table-hover">
+                <h3>{{ puser.email }}</h3>
+                
+				<p>ID: {{ puser.id}}</p>
+				
+				<p>Registered On: {{ puser.registered_on }}</p>
+				
+				<p>Site URL: {{ puser.psiteurl}}</p>
+				
+				<p>Role: {{ puser.role}}</p>
+				
+				<p>AWS profile: {{ puser.paws_profile}}</p>
+				
+                <p>Dropbox UID {{ puser.db_userid}}</p>
+				
+				<p>
+				
+				{% if puser.ppaid==True %}
+				<a class="btn btn-warning" href="{{ url_for('user_deactivate', id=puser.id) }}">Deactivate</a>
+				{% else %}
+				<a class="btn btn-success" href="{{ url_for('user_activate', id=puser.id) }}">Activate</a>
+				{% endif %}
+				&nbsp
+				<a class="btn btn-danger" href="{{ url_for('user_delete', id=puser.id) }}">Delete </a> 
+				</p>
+				
+		</table>
+        </article>
+     
+     
+       {% endfor %}
+     
+        <!-- End Main Content -->  
+</div>
+{% endblock %}

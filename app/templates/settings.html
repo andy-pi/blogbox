@@ -1,0 +1,200 @@
+{% extends "layout.html" %}
+{% block body %}
+<script>
+    $(function ($) {
+        $("a").tooltip()
+    });
+</script>
+  <form action="" method=post class="form-horizontal">
+   		
+	{% if puser.ppaid == True %}
+	
+	
+	<p><h1><img src="static/blogbox_logo4.png" height=28 width=28> BlogBox Dashboard</h1></p>
+	<div class="hero-unit">
+	<p>Step 1: Enter your settings below. Not all options are available on all themes - try it to see what is included!
+	<p>Step 2: Write your blog posts in <a href="https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet" target="_blank">Markdown format</a>, using something like Notepad or an online editor such as <a href="http://dillinger.io/" target="_blank">Dillinger</a>. You must include the name and date headers at the top of the file - see the <a href="{{ url_for('faq') }}">FAQ</a> for details!<br>
+	</p>
+	<p>Step 3: Save in your blog posts in your Dropbox/Apps/blogbox/your-site/posts/ folder. If you create a folder in here, all posts in that folder will be in a new category. Pages go in Dropbox/Apps/blogbox/your-site/pages/ and are added to your blog's menu, e.g. for an 'About' page. BlogBox will produce your blog and upload it - automagically - no need to login to publish!</p>
+
+<p>	Alternatively you can click <a class="btn btn-danger" href="{{ url_for('publish') }}">Publish</a> if you want to update your blog with a new theme, without changing your blog files in Dropbox.</p>
+
+	</div>
+	
+	{% else %}
+	
+	<div class="hero-unit">
+	<h2>Account Pending!</h2>
+	<p>Your account will be activated within 24 hours of payment. You will be able to publish your blog from this page after activation.</p>
+	</div>
+
+	{% endif %}
+
+				<div class="control-group">
+	<label class="control-label" for="psiteurl">Your Domain:</label>
+        <div class="controls">
+		<a class='btn' href='http://{{puser.psiteurl}}' type="button" target="_blank">{{puser.psiteurl}}</a>
+        </div>
+    </div>
+
+			{% if domainend != ".blogbox.com" %}
+	   <div class="control-group">
+	<label class="control-label" for="psiteurl" target="_blank">Point your DNS (CNAME record) here:</label>
+        <div class="controls">
+		<a class='btn' href='http://{{puser.psiteurl}}.s3-website-eu-west-1.amazonaws.com' type="button">{{puser.psiteurl}}.s3-website-eu-west-1.amazonaws.com</a>
+		
+        </div>
+    </div>
+ 	{% endif %}
+	
+		   <div class="control-group">
+	<label class="control-label" for="psiteurl">Dropbox Authorization </label>
+        <div class="controls">
+		{% if g.user.db_app_token =="" %}
+		<a class="btn btn-primary" href="{{ url_for('dropbox_auth_start') }}">Authorize your Dropbox Account</a>
+		{% else %}
+		Completed
+		 {% endif %}
+		
+        </div>
+    </div>
+	
+    <div class="control-group">
+	<label class="control-label" for="email">Email Address </label>
+        <div class="controls">
+		
+		<input type="text" name="email" class="input-xlarge" placeholder="Your email address" value="{{puser.email}}" required/>
+        </div>
+    </div>
+
+	<div class="control-group">
+	<label class="control-label" for="pauthor">Blog Author </label>
+        <div class="controls">
+		
+		<input type="text" name="pauthor" class="input-xlarge" placeholder="Blog Author" value="{{ puser.pauthor }}"/>
+        </div>
+    </div>
+	
+	<div class="control-group">
+	<label class="control-label" for="psitename">Site Name / Title </label>
+        <div class="controls">
+		<input type="text" name="psitename" class="input-xlarge" placeholder="Site Name" value="{{ puser.psitename }}"/>
+        </div>
+    </div>
+
+	<div class="control-group">
+	<label class="control-label" for="psubtitle">Site Subtitle </label>
+        <div class="controls">
+		<input type="text" name="psubtitle" class="input-xlarge" placeholder="Site Subtitle" value="{{ puser.psubtitle }}"/>
+        </div>
+    </div>
+	
+	<div class="control-group">
+	<a class="control-label" for="ptheme" href="{{ url_for('view_themes') }}" rel="tooltip" data-placement="right" title="Click here to view theme examples">Theme </a>
+        <div class="controls">
+		<select class="form-control" name="ptheme">
+		{% for toption in themeslist %} 
+			{% if puser.ptheme == toption %}
+				<option SELECTED>{{ puser.ptheme }}</option>
+			{% else %}
+				<option>{{ toption }}</option>
+			{% endif %}
+		{% endfor %}
+		
+		</select>
+		</div>
+    </div>
+	
+	<div class="control-group">
+	<a class="control-label" for="plinks" href="#" rel="tooltip" data-placement="right" title="To add social pages type the name and url separated by a comma, one per line, for example (try all lowercase, using the name of the site):
+github,https://github.com/andy-pi
+twitter,https://twitter.com/andypitech">Links </a>
+	
+        <div class="controls">
+		<textarea type="text" name="plinks" class="input-xlarge" placeholder="List of links">{{ puser.plinks}}</textarea>
+        </div>
+    </div>
+	
+	
+<div class="control-group">
+<a class="control-label" for="psocial" href="#" rel="tooltip" data-placement="right" title="To add links type the name and url separated by a comma, one per line, for example:
+AndyPi,http://andypi.co.uk
+My Twitter Page,https://twitter.com/andypitech">Social Media Links </a>
+        <div class="controls">
+		<textarea type="text" name="psocial" class="input-xlarge" placeholder="Social Media Links">{{ puser.psocial}}</textarea>
+        </div>
+    </div>
+	
+	<div class="control-group">
+<a class="control-label" for="pmenu" href="#" rel="tooltip" data-placement="right" title="To add items to the main menu (not all themes) type the name and url separated by a comma, one per line, for example:
+AndyPi,http://andypi.co.uk
+Blogbox,https://blogbox.com">Main Menu Links </a>
+        <div class="controls">
+		<textarea type="text" name="pmenu" class="input-xlarge" placeholder="Main Menu Links">{{ puser.pmenu}}</textarea>
+        </div>
+    </div>
+	
+
+	<div class="control-group">
+	<label class="control-label" for="psitelogo">URL of site logo </label>
+        <div class="controls">
+		<input type="text" name="psitelogo" class="input-xlarge" placeholder="https://blogbox.com/static/blogbox_logo4.png" value="{{ puser.psitelogo }}"/>
+        </div>
+    </div>
+	
+	<div class="control-group">
+	<label class="control-label" for="pfavicon">URL of site icon </label>
+        <div class="controls">
+		<input type="text" name="pfavicon" class="input-xlarge" placeholder="https://blogbox.com/static/favicon.ico" value="{{ puser.pfavicon }}"/>
+        </div>
+    </div>
+	
+	
+	<div class="control-group">
+	<label class="control-label" for="pbanner">URL of banner image </label>
+        <div class="controls">
+		<input type="text" name="pbanner" class="input-xlarge" placeholder="https://blogbox.com/static/example_banner.jpg" value="{{ puser.pbanner }}"/>
+        </div>
+    </div>
+
+	
+		<div class="control-group">
+	<a class="control-label" for="pdisqus_sitename" href="https://publishers.disqus.com/engage" rel="tooltip" data-placement="right" title="Sign up to Disqus, and from your account settings 'Add Disqus to site', click start using Engage, and then enter your account name here to enable comments ">Disqus Name </a>
+        <div class="controls">
+		<input type="text" name="pdisqus_sitename" class="input-xlarge" placeholder="Disqus Name" value="{{ puser.pdisqus_sitename}}"/>
+        </div>
+    </div>
+	
+		<div class="control-group">
+	<label class="control-label" for="ptimezone">Timezone </label>
+        <div class="controls">
+		
+		<select class="form-control" name="ptimezone">
+		{% for tzoption in tzones %} 
+			{% if puser.ptimezone == tzoption %}
+				<option SELECTED>{{ puser.ptimezone }}</option>
+			{% else %}
+				<option>{{ tzoption }}</option>
+			{% endif %}
+		{% endfor %}
+		
+		</select>
+        </div>
+    </div>
+	
+
+	<div class="control-group">
+	<label class="control-label" for="pdefault_pagination">Posts per page </label>
+        <div class="controls">
+		<input type="number" min="5" max="100" step="5" name="pdefault_pagination" class="input-xlarge" value="{{ puser.pdefault_pagination}}"/>
+        </div>
+    </div>
+	
+
+    <div class="control-group">
+        <div class="controls">
+          <button type="submit" class="btn btn-success">Save Settings</button>
+        </div>
+    </div>
+  </form>
+{% endblock %}

@@ -1,0 +1,30 @@
+{% extends "layout.html" %}
+{% block body %}
+
+		
+	<form action="" method=post class="form-horizontal">
+    <h2><img src="static/blogbox_logo4.png" height=23 width=23> Reset password</h2>
+	
+    <div class="control-group">
+	
+	<label class="control-label" for="email">Email Address: </label>
+        <div class="controls">
+		
+          <input type="text" id="email" name="email" class="input-xlarge"
+            placeholder="Enter email" value="{{ request.form.email }}"
+            required>
+			
+        </div>
+    </div>
+ 
+   	</p>
+	
+    <div class="control-group">
+        <div class="controls">
+          <button type="submit" class="btn btn-success">Send Password Reset Link</button>
+        </div>
+    </div>
+  </form>
+
+
+{% endblock %}

@@ -1,0 +1,24 @@
+{% extends "layout.html" %}
+{% block body %}
+     
+      <!-- Main Page Content and Sidebar -->
+<div id="main" class="container">
+
+ <form action="" method=post class="form-horizontal">
+	    <div class="hero-unit">
+		<h2>Contact Us</h2>
+		
+		<p>If you have any questions or problems with your BlogBox account, please send us a message.</p>
+				
+	<p>
+	  <textarea type="text" style="width: 600px; height: 150px;" name="message_text" placeholder="To enable us to help you most effectively, please supply as much information as you can in your query.">{{ message_text }}</textarea></p>
+	  
+	  <button type="submit" class="btn btn-success">Send Feedback</button>
+	  <p></p>
+		
+	  </form>
+            </div>
+	 	     
+        <!-- End Main Content -->  
+</div>
+{% endblock %}

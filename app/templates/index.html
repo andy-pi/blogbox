@@ -1,0 +1,35 @@
+{% extends "layout.html" %}
+{% block body %}
+     
+      <!-- Main Page Content and Sidebar -->
+	 
+<div id="main" class="container">
+
+          <div class="hero-unit">
+        <h1>Welcome to BlogBox</h1>
+		
+        <p>BlogBox automaigically creates a blog from simple text files you put in Dropbox. Simply save blog posts in markdown format and BlogBox uses Pelican to generate a static web site and uploads it to the web with a theme of your choice. </p>
+        <p><a href="{{ url_for('signup') }}" class="btn btn-primary btn-large">Sign up free for 2 months &raquo;</a></p>
+      </div>
+	  
+	  <div class="row">
+        <div class="span4">
+          <h2><img src="static/blogbox_logo4.png" height=23 width=23> Automagic</h2> 
+          <p>Once you have authorized your dropbox account and chosen your theme, just save your blog posts in your Dropbox/Apps/Blogbox folder, and in seconds your cool looking blog is online at yoursite.blogbox.com!</p>
+          
+        </div>
+        <div class="span4">
+          <h2><img src="static/blogbox_logo4.png" height=23 width=23> Customizable</h2> 
+          <p>Choose from 10+ themes, add social media links, enable comments using disqus integration. There is loads of help provided and links to online Markdown Editors. You can use your own domain name (purchase separately).</p>
+          
+       </div>
+        <div class="span4">
+          <h2><img src="static/blogbox_logo4.png" height=23 width=23> Great Price</h2> 
+          <p>Try BlogBox free for two months. After that just pay £1 per month including hosting. Pay monthly via PayPal and you can cancel at anytime. Dropbox not included (but you can get a <a href="https://www.dropbox.com/" >free 2GB account here</a>)</p>
+          
+        </div>
+      </div>
+     
+        <!-- End Main Content -->  
+</div>
+{% endblock %}

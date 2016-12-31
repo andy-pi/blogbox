@@ -1,0 +1,22 @@
+{% extends "layout.html" %}
+{% block body %}
+     
+      <!-- Main Page Content and Sidebar -->
+<div id="main" class="container">
+
+	    <div class="hero-unit">
+		<h2>View a sample site for each of Blogbox's themes</h2>
+		
+		{% for toption in themeslist %} 
+		<p><a href='http://themes.blogbox.com/{{ toption }}' target="_blank">{{ toption }}</a><p>
+		{% endfor %}
+		
+		
+            </div>
+	 	     
+        <!-- End Main Content -->  
+</div>
+{% endblock %}
+
+
+
